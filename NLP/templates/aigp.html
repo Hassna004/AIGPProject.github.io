@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGP</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .hero img {
+            width: 100%;
+            height: auto;
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .hero-text button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .hero-text button:hover {
+            background-color: #444;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+        }
+        .carousel-item {
+            min-width: 300px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .carousel-item img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+        .carousel-item h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+        .carousel-item p {
+            font-size: 1rem;
+            margin: 10px 20px;
+        }
+        .carousel-item button {
+            margin-bottom: 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .carousel-item button:hover {
+            background-color: #444;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>AIGP</header>
+    <nav>
+        <a href="/aigp">Home</a>
+        <a href="/">gameIdea</a>
+        <a href="/cost">Cost</a>
+        <a href="/tasks">Tasks</a>
+        <a href="/feedback">Contact Us</a>
+    </nav>
+
+    <div class="hero">
+        <img src="{{ url_for('static', filename='images/hero-image.png') }}" alt="Hero Image">
+        <div class="hero-text">
+            <h1>AIGP - Artificial Intelligence Game Platform</h1>
+            <p>A platform dedicated to assisting game developers in analyzing their game ideas using modern AI technologies. The goal of the website is to provide comprehensive support to developers at all stages of game development, from idea analysis to cost estimation and task execution.</p>
+            <button onclick="location.href='/login'">Log in</button>
+
+        </div>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/image1.png') }}" alt="Advanced Idea Analysis">
+
+            <h3>Idea Analysis & Recommendations</h3>
+            <p> Utilize AI tools to transform game ideas into detailed plans, identifying opportunities and challenges while offering personalized recommendations to enhance design and mechanics.</p>
+            
+            <button onclick="location.href='/'">Try the tool</button>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/image2.png') }}" alt="Tailored Suggestions">
+            <h3>Cost Estimation</h3>
+            <p>A tool to estimate costs based on the provided details.</p>
+            <button onclick="location.href='/cost'">Try the tool</button>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/image3.png') }}" alt="Cost Estimation & Breakdown">
+            <h3>Task Management</h3>
+            <p>Provide actionable steps for major project tasks.
+                Suggestions to enhance productivity.</p>
+                <button onclick="location.href='/tasks'">Try the tool</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 AIGP. All Rights Reserved.
+    </footer>
+</body>
+</html>
