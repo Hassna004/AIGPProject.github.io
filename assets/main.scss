@@ -1,0 +1,10 @@
+// Importing the minima theme correctly
+@use "minima/base" as *;
+@use "minima/layout" as *;
+@use "minima/syntax-highlighting" as *;
+
+// Update for the deprecated color functions
+$grey-color-light: color.adjust($grey-color, $lightness: 40%) !default;
+$grey-color-dark: color.adjust($grey-color, $lightness: -25%) !default;
+
+// Any other code in your main.scss file

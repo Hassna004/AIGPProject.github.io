@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Game Tasks and Suggestions</title>
+    <style>
+        body {
+            background-color: #d3d3d3; /* Light gray background */
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: black; /* Black navbar */
+            border-bottom: 2px solid white;
+        }
+        .navbar-brand {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .navbar-brand:hover {
+            color: #e74c3c; /* Red hover effect */
+        }
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 1rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #e74c3c; /* Red hover effect for links */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .input-card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+        .analyze-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .analyze-btn:hover {
+            background-color: #0056b3;
+        }
+        .result-card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 1.5rem;
+        }
+        .result-card h4 {
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .animation-section, .character-section, .code-section {
+            margin-top: 20px;
+        }
+        .character-section img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .result-card p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/aigp">AIGP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/aigp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Game Idea</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cost">Project Cost</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tasks">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/feedback">Feedback</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="title">Game Tasks and Suggestions</div>
+        <div class="input-card">
+            <form method="POST" action="/tasks">
+                <div class="form-group">
+                    <label for="taskDetails">Enter Game Details</label>
+                    <textarea class="form-control" id="taskDetails" name="task_details" rows="5" placeholder="Describe your game details..." required></textarea>
+                </div>
+                <button type="submit" class="analyze-btn">Analyze Tasks</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        {% if animation_suggestions or character_images or gameplay_code %}
+        <div class="result-card">
+            {% if animation_suggestions %}
+            <div class="animation-section">
+                <h4>Animation Suggestions:</h4>
+                <p>{{ animation_suggestions }}</p>
+            </div>
+            {% endif %}
+
+            {% if character_images %}
+            <div class="character-section">
+                <h4>Character Designs:</h4>
+                <img src="{{ character_images }}" alt="Character Design" style="width: 100%; max-width: 400px;" />
+            </div>
+            {% else %}
+            <p>No character images available.</p>
+            {% endif %}
+
+            {% if gameplay_code %}
+            <div class="code-section">
+                <h4>Gameplay Code Suggestions:</h4>
+                <pre><code>{{ gameplay_code }}</code></pre>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="result-card">
+            <p>No suggestions available. Please provide game details above.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+

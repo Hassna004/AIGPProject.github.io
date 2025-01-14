@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Project Cost Analysis</title>
+    <style>
+        /* تغيير لون خلفية البودي */
+        body {
+            background-color: #d3d3d3; /* اللون الرمادي */
+            font-family: Arial, sans-serif;
+        }
+        /* تنسيق شريط التنقل */
+        .navbar {
+            background-color: black; /* اللون الأسود */
+            border-bottom: 2px solid white; /* خط سفلي أبيض */
+        }
+        .navbar-brand {
+            color: white; /* لون النص */
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: white; /* لون الروابط */
+            text-transform: capitalize;
+            font-size: 1rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #e74c3c; /* لون التأثير عند التمرير */
+        }
+        /* تنسيق النصوص والعناصر */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .input-card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+        .analyze-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .analyze-btn:hover {
+            background-color: #0056b3;
+        }
+        .result-card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 1.5rem;
+        }
+        .result-card h4 {
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .result-card p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        #costChart {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/aigp">AIGP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/aigp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Game Idea</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cost">Cost</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tasks">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <div class="title">Project Cost Analysis</div>
+        <div class="input-card">
+            <form method="POST" action="/cost">
+                <div class="form-group">
+                    <label for="projectDetails">Enter Project Details</label>
+                    <textarea class="form-control" id="projectDetails" name="project_details" rows="5" placeholder="Describe your project details..."></textarea>
+                </div>
+                <button type="submit" class="analyze-btn">Analyze Cost</button>
+            </form>
+        </div>
+        {% if cost_analysis %}
+        <div class="result-card">
+            <h4>Cost Analysis Result:</h4>
+            <p>{{ cost_analysis }}</p>
+        </div>
+        <canvas id="costChart"></canvas>
+        <script>
+            const ctx = document.getElementById('costChart').getContext('2d');
+            const data = {
+                labels: ['Game Design', 'Programming', 'Art and Animation', 'Sound and Music'], // Example labels
+                datasets: [{
+                    label: 'Project Costs',
+                    data: [5000, 40000, 30000, 10000], // Example costs, replace with real data
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+            const costChart = new Chart(ctx, config);
+        </script>
+        {% endif %}
+    </div>
+</body>
+</html>
