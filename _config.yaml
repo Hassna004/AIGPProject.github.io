@@ -1,0 +1,6 @@
+title: AIGP
+description: A simple Jekyll site for AIGP. 
+url: "http://127.0.0.1:4000"  # This is your local development URL.
+baseurl: "" # Set this if you deploy your site under a subfolder.
+theme: minima  # You can change this to any theme you like, such as 'minima'. 
+ 
